@@ -1,0 +1,22 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Trend Micro         -- http://www.trendmicro.com
+    Core Web Team       -- Texas, USA      
+
+    Katie Harron        -- Front-end Developer   
+                        -- http://www.linkedin.com/in/katiedixon
+
+    Jennifer Wolfgang   -- Web Designer / User Experience    
+                        -- http://www.linkedin.com/pub/jennifer-wolfgang/4/888/178
+
+# THANKS
+
+    
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    jQuery
