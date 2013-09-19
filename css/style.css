@@ -1,3 +1,27 @@
+/* If Adaptive, you can use this
+
+ @1cols: ( 1 * (@column + @gutter) - @gutter) / @em; @1col: @1cols;
+ @2cols: ( 2 * (@column + @gutter) - @gutter) / @em;
+ @3cols: ( 3 * (@column + @gutter) - @gutter) / @em;
+ @4cols: ( 4 * (@column + @gutter) - @gutter) / @em;
+ @5cols: ( 5 * (@column + @gutter) - @gutter) / @em;
+ @6cols: ( 6 * (@column + @gutter) - @gutter) / @em;
+ @7cols: ( 7 * (@column + @gutter) - @gutter) / @em;
+ @8cols: ( 8 * (@column + @gutter) - @gutter) / @em;
+ @9cols: ( 9 * (@column + @gutter) - @gutter) / @em;
+@10cols: (10 * (@column + @gutter) - @gutter) / @em;
+@11cols: (11 * (@column + @gutter) - @gutter) / @em;
+@12cols: (12 * (@column + @gutter) - @gutter) / @em;
+@13cols: (13 * (@column + @gutter) - @gutter) / @em;
+@14cols: (14 * (@column + @gutter) - @gutter) / @em;
+@15cols: (15 * (@column + @gutter) - @gutter) / @em;
+@16cols: (16 * (@column + @gutter) - @gutter) / @em;
+
+.width (@cols:1) {
+  width: (@cols * (@column + @gutter) - @gutter) / @em;
+}
+
+*/
 body,
 div,
 h1,
@@ -53,7 +77,6 @@ html {
   height: 100%;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
   font-size: 100%;
 }
 body {
@@ -132,7 +155,7 @@ img::-moz-selection {
   background: transparent;
 }
 body {
-  -webkit-tap-highlight-color: rgba(255, 0, 0, 0.62);
+  -webkit-tap-highlight-color: rgba(18, 52, 86, 0.1);
 }
 /* MICRO CLEARFIX HACK */
 .cf:before,
@@ -222,27 +245,46 @@ body {
 @font-face {
   font-family: "InterstateLight";
   src: url("font/Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-2.eot");
-  src: url("font/Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-2.eot?") format("embedded-opentype"), url("font/Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-3.woff") format("woff"), url("font/Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-1.ttf") format("truetype"), url("font/Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-4.svg#IL") format("svg");
+  src: url("font/Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-2.eot?iefix") format("embedded-opentype"), url("font/Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-4.svg#IL") format("svg"), url("font/Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-3.woff") format("woff"), url("font/Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-1.ttf") format("truetype");
   font-style: normal;
   font-weight: normal;
 }
-/* TINY 480px+ */
-@media only screen and (min-width: 30em) {
-  /* body::before{ content: "Tiny media query (480+) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: absolute; top: 0; left: 0; right: 0; z-index: 99; } */
+.wrapper {
+  max-width: 37.5em;
+  width: 100%;
+  padding: 0 1.25em;
+  margin: auto;
 }
+/* TINY 480px+ 
+@media only screen and (min-width: 30em) {
+  body::before{ content: "Tiny media query (480+) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: absolute; top: 0; left: 0; right: 0; z-index: 99; }
+
+}*/
 /* SMALL 600px+ */
 @media only screen and (min-width: 37.5em) {
   /*body::before{ content: "Small media query (600+) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: absolute; top: 0; left: 0; right: 0; z-index: 99; }*/
+  .wrapper {
+    max-width: 48em;
+  }
 }
 /* MEDIUM 768px+ */
 @media only screen and (min-width: 48em) {
   /*body::before{ content: "Medium media query (768+) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: absolute; top: 0; left: 0; right: 0; z-index: 99; }*/
+  .wrapper {
+    max-width: 60em;
+  }
 }
 /* Large 960px+ */
 @media only screen and (min-width: 60em) {
   /*body::before{ content: "Large media query (960+) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: absolute; top: 0; left: 0; right: 0; z-index: 99; }*/
+  .wrapper {
+    max-width: 71.25em;
+  }
 }
 /* Giant 1140px+ */
 @media only screen and (min-width: 71.25em) {
   /*body::before{ content: "Giant media query (1140+) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: absolute; top: 0; left: 0; right: 0; z-index: 99; }*/
+  .wrapper {
+    max-width: 70.25em;
+  }
 }
