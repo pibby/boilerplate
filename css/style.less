@@ -140,12 +140,9 @@ img {border: 0;	-ms-interpolation-mode: bicubic} /* Improve IE's resizing of ima
 
 *, *:before, *:after{-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;} /* http://paulirish.com/2012/box-sizing-border-box-ftw/ */
 
-.rems (@px-size){
-  @rem-size: @px-size / @font-size;
-  font-size: ~"@{px-size}px"; 
-  font-size: ~"@{rem-size}rem";
-}
-.border-radius (@radius:4px) {
+.hide-text{text-indent: 100%; white-space: nowrap; overflow: hidden;}
+
+.border-radius (@radius: 4px) {
   -webkit-border-radius: @arguments;
   -moz-border-radius: @arguments;
   border-radius: @arguments;
@@ -164,6 +161,38 @@ img {border: 0;	-ms-interpolation-mode: bicubic} /* Improve IE's resizing of ima
   border-bottom-left-radius: @bottomleft;
   border-top-left-radius: @topleft;
 }
+.box-shadow (@shadow: 1px 1px 2px rgba(0,0,0,0.25)) {
+  -webkit-box-shadow: @shadow;
+  -moz-box-shadow: @shadow;
+  box-shadow: @shadow;
+}
+.inner-shadow-lt (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.5) {
+  -webkit-box-shadow: inset @x @y @blur @spread rgba(255, 255, 255, @alpha);
+  -moz-box-shadow:    inset @x @y @blur @spread rgba(255, 255, 255, @alpha);
+  box-shadow:         inset @x @y @blur @spread rgba(255, 255, 255, @alpha);
+}
+.inner-shadow-drk (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.5) {
+  -webkit-box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+  -moz-box-shadow:    inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+  box-shadow:         inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+}
+.text-shadow (@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
+  text-shadow: @string;
+}
+.opacity(@opacity: 0.5) {
+  -moz-opacity: @opacity;
+  -khtml-opacity: @opacity;
+  -webkit-opacity: @opacity;
+  opacity: @opacity;
+  @opperc: @opacity * 100;
+  -ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(opacity=@{opperc})";
+  filter: ~"alpha(opacity=@{opperc})";
+}
+.rems (@px-size){
+  @rem-size: @px-size / @font-size;
+  font-size: ~"@{px-size}px"; 
+  font-size: ~"@{rem-size}rem";
+}
 .gradient (@startColor: #555, @endColor: #333) {
 background-color: @endColor;
 background-image: -moz-linear-gradient(top, @startColor, @endColor); // FF 3.6+
@@ -179,22 +208,6 @@ filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endC
   -moz-transition: @transition;
   transition: @transition;
 }
-.box-shadow (@shadow: 1px 1px 2px rgba(0,0,0,0.25)) {
-  -webkit-box-shadow: @shadow;
-  -moz-box-shadow: @shadow;
-  box-shadow: @shadow;
-}
-.text-shadow (@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
-  -webkit-text-shadow: @string;
-  -moz-text-shadow: @string;
-  -ms-text-shadow: @string;
-  text-shadow: @string;
-}
-.opacity (@opacity: 0.5) {
-  -webkit-opacity:  @opacity;
-  -moz-opacity:     @opacity;
-  opacity:    @opacity;
-}
 
 @link: #c42b59;
 @link-hover: #8c1f40;
@@ -209,14 +222,22 @@ a {color: @link; text-decoration: none; transition: all 0.3s ease-out;
 a:focus {outline: thin dotted}
 a:hover, a:active {outline: none} /* Better CSS Outline Suppression */
 
-body{font-size: @font-size / 16*1em; font-family: Arial, Helvetica, sans-serif; line-height: @line/@em; background: #fff; color: #000;}
+body{font: 100%/150% Arial,Helvetica,Verdana,sans-serif; background: #fff; color: #000;}
 
 //body::before{ content: "No media query (0-600px) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: absolute; top: 0; left: 0; right: 0; z-index: 99; }
 
-@font-face{font-family:"InterstateLight";src:url("font/Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-2.eot");src:url("font/Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-2.eot?iefix") format("embedded-opentype"),url("font/Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-4.svg#IL") format("svg"),url("font/Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-3.woff") format("woff"),url("font/Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-1.ttf") format("truetype");font-style:normal;font-weight:normal}
+@font-face {
+  font-family: 'InterstateLight';
+  src: url('Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-2.eot'); /* IE9 Compat Modes */
+  src: url('Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-2.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-3.woff') format('woff'), /* Modern Browsers */
+       url('Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-1.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-4.svg#InterstateLight') format('svg'); /* Legacy iOS */
+  font-weight: normal;
+  }
 
 .base(){font-family: Arial, Helvetica, sans-serif;}
-.sans(){font-family: "Interstate", Arial, Helvetica, sans-serif; font-style: normal; font-weight: normal;}
+.sans(){font-family: "InterstateLight", Arial, Helvetica, sans-serif; font-style: normal; font-weight: normal;}
 
 .wrapper{max-width: 37.5em; width: 100%; padding: 0 20/@em; margin: auto;}
 
