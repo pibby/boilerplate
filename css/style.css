@@ -477,11 +477,13 @@ img {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-a:hover {
-  color: #8c1f40;
+a {
   color: #c42b59;
   text-decoration: none;
   transition: all 0.3s ease-out;
+}
+a:hover {
+  color: #8c1f40;
 }
 a:active {
   color: #c42b59;
@@ -496,12 +498,13 @@ a:hover,
 a:active {
   outline: none;
 }
+/* Better CSS Outline Suppression */
 body {
   background: #fff;
   color: #000;
   font: 100%/150% Arial, Helvetica, Verdana, sans-serif;
 }
-/*body::before{ content: "No media query (0-600px) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: absolute; top: 0; left: 0; right: 0; z-index: 99; }*/
+/* body::before{ content: "No media query (0-600px) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: absolute; top: 0; left: 0; right: 0; z-index: 99; } */
 @font-face {
   font-family: 'InterstateLight';
   src: url('Interstate-Light/e9258aa9-8d38-4395-b7e7-e18df29986f1-2.eot');
@@ -532,33 +535,35 @@ body {
     top: 0;
     z-index: 99;
   }
+
+  .wrapper { max-width: 37.5em; }
   
 }*/
 /* SMALL 600px+ */
 @media only screen and (min-width: 37.5em) {
-  /*body::before { content: "Small media query (600+) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: absolute; top: 0; left: 0; right: 0; z-index: 99; }*/
+  /* body::before { content: "Small media query (600+) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: absolute; top: 0; left: 0; right: 0; z-index: 99; } */
   .wrapper {
     max-width: 48em;
   }
 }
 /* MEDIUM 768px+ */
 @media only screen and (min-width: 48em) {
-  /*body::before { content: "Medium media query (768+) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: absolute; top: 0; left: 0; right: 0; z-index: 99; }*/
+  /* body::before { content: "Medium media query (768+) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: absolute; top: 0; left: 0; right: 0; z-index: 99; } */
   .wrapper {
     max-width: 60em;
   }
 }
 /* Large 960px+ */
 @media only screen and (min-width: 60em) {
-  /*body::before { content: "Large media query (960+) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: absolute; top: 0; left: 0; right: 0; z-index: 99; }*/
+  /* body::before { content: "Large media query (960+) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: absolute; top: 0; left: 0; right: 0; z-index: 99; } */
   .wrapper {
     max-width: 71.25em;
   }
 }
-/* Giant 1140px+ */
+/* Giant 1140px - 1440px */
 @media only screen and (min-width: 71.25em) {
-  /*body::before { content: "Giant media query (1140+) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: absolute; top: 0; left: 0; right: 0; z-index: 99; }*/
+  /* body::before { content: "Giant media query (1140+) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: absolute; top: 0; left: 0; right: 0; z-index: 99; } */
   .wrapper {
-    max-width: 70.25em;
+    max-width: 90em;
   }
 }
