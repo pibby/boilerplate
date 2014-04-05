@@ -108,4 +108,19 @@ jQuery(document).ready(function($){
                  .end().filter("[href=#"+id+"]").parent().addClass("active");
            }                   
         });
-});
+
+// Scroll to Top
+        $(window).scroll(function(){
+              if ($(this).scrollTop() < 100) {
+                  $('.scrollup').hide();
+              } else {
+                  $('.scrollup').show().animate({opacity: 1});
+              }
+          });
+
+          $('.scrollup').click(function(){
+              $("html, body").animate({ scrollTop: 0 }, 600);
+              return false;
+          });
+          
+}); // end document ready

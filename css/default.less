@@ -4,29 +4,6 @@
 
 @column: 48; // The column-width of your grid in pixels
 @gutter: 24; // The gutter-width of your grid in pixels
-
-// If Adaptive, you can use this
-
-//  @1cols: ( 1 * (@column + @gutter) - @gutter) / @em; @1col: @1cols;
-//  @2cols: ( 2 * (@column + @gutter) - @gutter) / @em;
-//  @3cols: ( 3 * (@column + @gutter) - @gutter) / @em;
-//  @4cols: ( 4 * (@column + @gutter) - @gutter) / @em;
-//  @5cols: ( 5 * (@column + @gutter) - @gutter) / @em;
-//  @6cols: ( 6 * (@column + @gutter) - @gutter) / @em;
-//  @7cols: ( 7 * (@column + @gutter) - @gutter) / @em;
-//  @8cols: ( 8 * (@column + @gutter) - @gutter) / @em;
-//  @9cols: ( 9 * (@column + @gutter) - @gutter) / @em;
-// @10cols: (10 * (@column + @gutter) - @gutter) / @em;
-// @11cols: (11 * (@column + @gutter) - @gutter) / @em;
-// @12cols: (12 * (@column + @gutter) - @gutter) / @em;
-// @13cols: (13 * (@column + @gutter) - @gutter) / @em;
-// @14cols: (14 * (@column + @gutter) - @gutter) / @em;
-// @15cols: (15 * (@column + @gutter) - @gutter) / @em;
-// @16cols: (16 * (@column + @gutter) - @gutter) / @em;
-
-// .width (@cols:1) {
-//   width: (@cols * (@column + @gutter) - @gutter) / @em;
-// }
   
 body, div, h1, h2, h3, h4, h5, h6, p, blockquote, pre, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, th, td, article, aside, figure, footer, header, hgroup, menu, nav, section {
   border: 0;
@@ -42,6 +19,7 @@ html {
 body {
   font-size: 100%;
   min-height: 100%;
+  -webkit-tap-highlight-color: rgba(255,0,0, 0.62);
 }
 
 a img, img {
@@ -67,18 +45,18 @@ a img, img {
 img::selection { background: transparent; }
 
 img::-moz-selection { background: transparent; }
-
-body { -webkit-tap-highlight-color: rgba(18,52,86, 0.1); }
   
 /* MICRO CLEARFIX HACK */
-.cf:before, .cf:after { 
-  content: " ";
-  display: table; /* For modern browsers */ 
+.cf{
+    zoom: 1; /* For IE 6/7 (trigger hasLayout) */
+    &:before, &:after {
+        content: "";
+        display: table; /* For modern browsers */
+    }
+    &:after {
+        clear: both;
+    }
 }
-
-.cf:after { clear: both; }
-
-.cf { *zoom: 1; /* For IE 6/7 (trigger hasLayout) */ }
 
 /* MEDIA */
 figure { margin: 0; }
@@ -194,9 +172,37 @@ img {
   transition: @transition;
 }
 
-@link: #c42b59;
-@link-hover: #8c1f40;
-@link-visited: #e07495;
+// Margin mixin (Katie Harron) - enter pixel values in order: margin-top, margin-right, margin-bottom, margin-left
+// Usage: .mar(10, 30, 15, 20);
+.mar(@mt: 0; @mr: 0; @mb: 0; @ml: 0;) { 
+  @mtv: @mt / @font-size;
+  @mrv: @mr / @font-size;
+  @mbv: @mb / @font-size;
+  @mlv: @ml / @font-size;
+  margin: ~"@{mt}px" ~"@{mr}px" ~"@{mb}px" ~"@{ml}px";
+  margin: ~"@{mtv}rem" ~"@{mrv}rem" ~"@{mbv}rem" ~"@{mlv}rem";
+}
+ 
+// Padding mixin (Katie Harron) - enter pixel values in order: padding-top, padding-right, padding-bottom, padding-left
+// Usage: .pad(5, 10, 5, 10);
+.pad(@pt: 0; @pr: 0; @pb: 0; @pl: 0;) { 
+  @ptv: @pt / @font-size;
+  @prv: @pr / @font-size;
+  @pbv: @pb / @font-size;
+  @plv: @pl / @font-size;
+  padding: ~"@{pt}px" ~"@{pr}px" ~"@{pb}px" ~"@{pl}px";
+  padding: ~"@{ptv}rem" ~"@{prv}rem" ~"@{pbv}rem" ~"@{plv}rem";
+}
+
+@link: #4a8db8;
+@link-hover: #1b5c85;
+@link-visited: #e56000;
+
+.fl{float: left;}
+.fr{float: right;}
+.center{text-align: center;}
+.uc{text-transform: uppercase;}
+.hide-sm{display: none;}
 
 // HYPERLINKS
 a {color: @link; text-decoration: none; transition: all 0.3s ease-out;
@@ -231,9 +237,10 @@ body { background: #fff; color: #000; font: 100%/150% Arial,Helvetica,Verdana,sa
 
 .wrapper {
   margin: auto;
+  .pad(20,20,5,20);
   max-width: 37.5em;
-  padding: 0 20/@em;
   width: 100%;
+  .cf;
 }
 
 

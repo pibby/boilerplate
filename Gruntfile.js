@@ -1,87 +1,90 @@
 module.exports = function(grunt) {
 
-  grunt.initConfig({
-  	pkg: grunt.file.readJSON('package.json'),
+grunt.initConfig({
+pkg: grunt.file.readJSON('package.json'),
 
-		imagemin: {
-			png: {
-				options: {
-					optimizationLevel: 7
-				},
-				files: [
-				{
-					expand: true,
-					cwd: 'images/', // cwd is 'current working directory'
-					src: ['**/*.png'],
-					dest: 'images/', // Could also match cwd.
-					ext: '.png'
-				}
-				]
-			},
-			jpg: {
-				options: {
-					progressive: true
-				},
-				files: [
-				{
-					expand: true, // Tell Grunt where to find our images and where to export them to.
-					cwd: 'images/', // cwd is 'current working directory'
-					src: ['**/*.jpg'],
-					dest: 'images/', // Could also match cwd.
-					ext: '.jpg'
-				}
-				]
-			}
+imagemin: {
+	dynamic: {
+		files: [{
+			expand: true,
+			cwd: 'images/',
+			src: ['**/*.{png,jpg,gif}'],
+			dest: 'images/'
+		}]
+	}
+},
+
+less: {
+	compile: {
+		options: {
+			compress: true,
+			cleancss: true,
+			optimization: 2
 		},
-		
-		less: {
-            compile: {
-                options: {
-                    compress: true,
-                    cleancss: true,
-                    optimization: 2
-                },
-                files: {
-                	// target.css file: source.less file
-                    'css/style.css': 'css/style.less'
-                }
-            }
-        },
-
-        watch: {
-        	images: {
-        		options: {
-                    spawn: false,
-                    event: ['added', 'deleted', 'changed']
-                },
-        		files: ['images/*.{png,jpg,gif}'],
-        		tasks: ['imagemin']
-        	},
-            styles: {
-               options: {
-                    spawn: false,
-                    event: ['added', 'deleted', 'changed']
-                },
-                files: ['css/*.less'],
-                tasks: ['less']
-            }
+		files: {
+        	// target.css file: source.less file
+        	'css/style.css': 'css/style.less'
         }
-		
-		// cssmin: {
-		// 	minify: {
-		// 		expand: true,
-		// 		cwd: 'assets/css/',
-		// 		src: ['*.css', '!*.min.css'],
-		// 		dest: 'assets/css/',
-		// 		ext: '.min.css'
-		// 	}
-		// }
-	});
+    }
+},
+
+uglify: {
+	dist: {
+		files: {
+			'js/scripts.min.js': 'js/scripts.js'
+		}
+	}
+},
+
+responsive_images: {
+	rwdimg: {
+		engine: 'im',
+		options: {
+			sizes: [{
+				name: 'sm',
+				width: 265
+			},
+			{
+				name: 'md',
+				width: 545
+			}]
+		},
+		files: [{
+			expand: true,
+			cwd: 'images/',
+			src: ['**/*.{jpg,gif,png}'],
+			dest: 'images/'
+		}]
+	}
+},
+
+watch: {
+	images: {
+		options: {
+			spawn: false,
+			event: ['added', 'deleted', 'changed']
+		},
+		files: ['images/*.{png,jpg,gif}'],
+		tasks: ['imagemin']
+	},
+	styles: {
+		options: {
+			spawn: false,
+			event: ['added', 'deleted', 'changed']
+		},
+		files: ['css/*.less'],
+		tasks: ['less']
+	}
+}
+});
 
 
-  grunt.loadNpmTasks('grunt-contrib-imagemin');
-  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.registerTask('default', ['watch']);
-
+grunt.loadNpmTasks('grunt-contrib-imagemin');
+grunt.loadNpmTasks('grunt-contrib-less');
+grunt.loadNpmTasks('grunt-contrib-watch');
+grunt.loadNpmTasks('grunt-contrib-uglify');
+grunt.loadNpmTasks('grunt-responsive-images');
+grunt.registerTask('default', ['watch']);
+grunt.registerTask('img', ['imagemin']);
+grunt.registerTask('min', ['uglify']);
 };
