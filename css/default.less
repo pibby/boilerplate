@@ -5,6 +5,11 @@
 @column: 48; // The column-width of your grid in pixels
 @gutter: 24; // The gutter-width of your grid in pixels
   
+// Remove if using Normalise
+article, aside, footer, header, main, nav, section {
+  display: block;
+}
+
 body, div, h1, h2, h3, h4, h5, h6, p, blockquote, pre, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, th, td, article, aside, figure, footer, header, hgroup, menu, nav, section {
   border: 0;
   margin: 0;
@@ -42,24 +47,29 @@ a img, img {
   color: white;
 }
 
-img::selection { background: transparent; }
+img::selection {
+  background: transparent;
+}
 
-img::-moz-selection { background: transparent; }
+img::-moz-selection {
+  background: transparent;
+}
   
 /* MICRO CLEARFIX HACK */
-.cf{
-    zoom: 1; /* For IE 6/7 (trigger hasLayout) */
+.cf {
     &:before, &:after {
         content: " ";
         display: table; /* For modern browsers */
     }
     &:after {
-        clear: both;
+      clear: both;
     }
 }
 
 /* MEDIA */
-figure { margin: 0; }
+figure {
+  margin: 0;
+}
 
 /* Fluid images */
 img, object {
@@ -77,7 +87,6 @@ img {
 /* responsive videos */
 .video figure {
   height: 0;
-  nowhitespace: afterproperty;
   overflow: hidden;
   padding-bottom: 56.25%;
   position: relative;
@@ -137,7 +146,9 @@ img {
   box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
 }
 
-.text-shadow(@string: 0 1px 3px rgba(0, 0, 0, 0.25)) { text-shadow: @string; }
+.text-shadow(@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
+  text-shadow: @string;
+}
 
 .opacity(@opacity: 0.5) {
   -webkit-opacity: @opacity;
@@ -198,24 +209,62 @@ img {
 @link-hover: #1b5c85;
 @link-visited: #e56000;
 
-.fl{float: left;}
-.fr{float: right;}
-.center{text-align: center;}
-.uc{text-transform: uppercase;}
-.hide-sm{display: none;}
+.fl() {
+  float: left;
+}
+.fr() {
+  float: right;
+}
+.cb() {
+  clear: both;
+}
+.center() {
+  text-align: center;
+}
+.uc() {
+  text-transform: uppercase;
+}
+.nt() {
+  text-transform: none;
+}
+.hide-sm() {
+  display: none;
+}
+.hide-text() {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
 
 // HYPERLINKS
-a {color: @link; text-decoration: none; transition: all 0.3s ease-out;
-  &:hover {color: @link-hover;}
-  &:active {color: @link;}
-  &:visited {color: @link-visited;}
+a {
+  color: @link;
+  text-decoration: none;
+  transition: all 0.3s ease-out;
+  &:visited {
+    color: @link-visited;
+  }
+  &:hover {
+    color: @link-hover;
+  }
+  &:active {
+    color: @link;
+  }
 }
-a:focus { outline: thin dotted; }
-a:hover, a:active { outline: none; } /* Better CSS Outline Suppression */
+a:focus {
+  outline: thin dotted;
+}
+a:hover, a:active {
+  outline: none;
+} // Better CSS Outline Suppression
 
-body { background: #fff; color: #000; font: 100%/150% Arial,Helvetica,Verdana,sans-serif; }
+body {
+  background: #fff;
+  color: #000;
+  font: 100%/1.4 Arial,Helvetica,Verdana,sans-serif;
+}
 
-/* body::before{ content: "No media query (0-600px) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: absolute; top: 0; left: 0; right: 0; z-index: 99; } */
+// body::before{ content: "No media query (0-600px) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: absolute; top: 0; left: 0; right: 0; z-index: 99; }
 
 @font-face {
   font-family: 'InterstateLight';
@@ -227,7 +276,9 @@ body { background: #fff; color: #000; font: 100%/150% Arial,Helvetica,Verdana,sa
   font-weight: normal;
 }
 
-.base() { font-family: Arial, Helvetica, sans-serif; }
+.base() {
+  font-family: Arial, Helvetica, sans-serif;
+}
 
 .sans() {
   font-family: "InterstateLight", Arial, Helvetica, sans-serif;
