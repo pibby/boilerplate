@@ -55,11 +55,11 @@ img::-moz-selection {
   background: transparent;
 }
   
-/* MICRO CLEARFIX HACK */
-.cf {
+/ MICRO CLEARFIX HACK
+.cf() {
     &:before, &:after {
         content: " ";
-        display: table; /* For modern browsers */
+        display: table; // For modern browsers
     }
     &:after {
       clear: both;
