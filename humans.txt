@@ -6,12 +6,8 @@
     Trend Micro         -- http://www.trendmicro.com
     Core Web Team       -- Texas, USA      
 
-    Katie Harron        -- Front-end Developer   
-                        -- https://www.vizify.com/katie-harron/
-
-# THANKS
-
-    
+    Katie Harron        -- Front-End Web Developer 
+                        -- http://dev.pibby.com/about/
 
 # TECHNOLOGY COLOPHON
 
